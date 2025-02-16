@@ -35,13 +35,22 @@ fn main() {
     println! ("x = {x} and y + 3 = {}", y + 3);
     println! ("z = {z} and k + 2 = {}", k - 10);
 
+    
+    loop {
+        println! ("Faka iqashiso");
+    
+
     let mut iqashiso = String::new();
 
     io::stdin()
         .read_line(&mut iqashiso)
         .expect("Failed to read line");
 
-    let iqashiso: u32 = iqashiso.trim().parse().expect("Nceda ubhale inani");
+    let iqashiso: u32 = match iqashiso.trim().parse() {
+        Ok(num) => num,
+        Err(_) => continue,
+
+    };
 
     println!("Uqashe: {iqashiso}");
 
@@ -51,6 +60,12 @@ fn main() {
     match iqashiso.cmp(&inani_lemfihlakalo) {
         Ordering::Less => println!("Too small"),
         Ordering::Greater => println!("Too big"),
-        Ordering::Equal => println!("You win"),
+        Ordering::Equal => {
+            println!("You win");
+            break;
+
+
+         }
+        }
     }
 }
